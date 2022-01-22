@@ -27,6 +27,9 @@ package com.atguigu.java;
  *
  */
 public class AnnotationTest {
+    public static void main(String[] args) {
+
+    }
 }
 
 class Person{
