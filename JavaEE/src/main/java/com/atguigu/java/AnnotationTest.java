@@ -1,5 +1,7 @@
 package com.atguigu.java;
 
+import java.util.ArrayList;
+
 /**
  * 注解的使用
  *
@@ -22,17 +24,64 @@ package com.atguigu.java;
      @SuppressWarnings:抑制编译器警告
  * 示例三：跟踪代码依赖性，实现替代配制文件功能
  *
+
+ * 3. 如何自定义注解：参照SuppressWarnings定义
+ * ①注解声明为:@interface
+ *
+ *
  * @author denghp
  * @create 2022-01-22 11:30
  *
  */
 public class AnnotationTest {
     public static void main(String[] args) {
+        Person p = new Student();
+        p.walk();
 
+        @SuppressWarnings("unused")
+        int num = 10;
+
+        //没用调用，没有加泛型
+        @SuppressWarnings({"unused","rawtypes"})
+        ArrayList list = new ArrayList();
     }
 }
 
+@MyAnnotation("hello")
 class Person{
     private String name;
     private int age;
+
+    public Person() {
+    }
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public void walk(){
+        System.out.println("人走路");
+    }
+
+    public void eat(){
+        System.out.println("人吃饭");
+    }
+}
+
+interface Info{
+    void show();
+}
+
+class Student extends Person implements Info{
+
+    @Override
+    public void walk() {
+        System.out.println("学生走路");
+    }
+
+    @Override
+    public void show() {
+
+    }
 }
