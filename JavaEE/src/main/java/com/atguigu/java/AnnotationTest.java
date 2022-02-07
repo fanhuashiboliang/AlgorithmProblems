@@ -1,5 +1,8 @@
 package com.atguigu.java;
 
+import org.junit.Test;
+
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 
 /**
@@ -40,12 +43,19 @@ import java.util.ArrayList;
       * Retention:指定所修饰的Annotation的生命周期：SOURC\CLASS(默认行为)\RUNTIME
       *           只有声明为RUNTIME生命周期的注解，才能通过反射获取。
       * Target：用于指定被修饰的Annotation能用于修饰哪些程序元素
-      * Documented：
-      * Inherited
+      * Documented：表示所修饰的注解在被javadoc解析时，保留下来。
+      * Inherited：被它修饰的Annotation将具有继承性
       *
-      *
+ *5.通过反射获取注解信息
+ *6.jdk 8 中注解的新特性：可重复注解、类型注解
+      * ①可重复注解：在MyAnnotation上声明@Repeatable，成员值为MyAnnotations.class
+      *             MyAnnotation的Target和Retention等元注解和MyAnnotations相同。
+      * ②类型注解：
+      *             ElementType.TYPE_PARAMETER 表示该注解能写在类型变量的声明语句中（如：泛型声明）。
+      *             ElementType.TYPE_USE 表示该注解能写在使用类型的任何语句中。
  * @author denghp
  * @create 2022-01-22 11:30
+ *
  *
  */
 public class AnnotationTest {
@@ -60,9 +70,19 @@ public class AnnotationTest {
         @SuppressWarnings({"unused","rawtypes"})
         ArrayList list = new ArrayList();
     }
+
+    @Test
+    public void testGetAnnotation(){
+        Class<Student> studentClass = Student.class;
+        Annotation[] annotation = studentClass.getAnnotations();
+        for (int i = 0; i < annotation.length; i++) {
+            System.out.println(annotation[i]);
+        }
+    }
 }
 
 @MyAnnotation()
+@MyAnnotation("hi")
 class Person{
     private String name;
     private int age;
@@ -99,4 +119,13 @@ class Student extends Person implements Info{
     public void show() {
 
     }
+}
+
+class Generic<@MyAnnotation T>{
+
+    public void show() throws @MyAnnotation RuntimeException{
+        ArrayList<@MyAnnotation String> list = new ArrayList<>();
+        int num = (@MyAnnotation int)10L;
+    }
+
 }

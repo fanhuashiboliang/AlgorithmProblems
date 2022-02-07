@@ -9,5 +9,8 @@
         <module name="JavaEE" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="seckill" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
