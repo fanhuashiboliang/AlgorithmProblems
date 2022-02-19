@@ -10,6 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="day01" target="1.8" />
       <module name="seckill" target="1.8" />
     </bytecodeTargetLevel>
   </component>
