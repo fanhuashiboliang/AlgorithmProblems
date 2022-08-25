@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="maven-wrapper1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/spring_source_code-master/spring_source_code-master/chapter10_webflux_function/.mvn/wrapper/maven-wrapper.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
